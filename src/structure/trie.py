@@ -63,6 +63,6 @@ class Trie(object):
                     return self.find_word(wanted_word, child, char_index + 1)
 
         if char_index == len(wanted_word):
-            return node.br_ponavljanja_putanja
+            return node.path_number_of_repetitions
         else:
             return None
