@@ -1,8 +1,10 @@
 from os import listdir
 from os.path import join, isdir, splitext, abspath, split
 
+from src.structure.trie import Trie
 from src.text.parser import Parser
-from src.structure import trie
+
+list_operand = ['AND', 'OR', 'NOT']
 
 
 def read_the_file_paths(root_directory_path, list_of_paths):
@@ -18,10 +20,11 @@ def read_the_file_paths(root_directory_path, list_of_paths):
         if isdir(path):
             read_the_file_paths(path, list_of_paths)
 
-            file_extension = splitext(path)[1]
-            if file_extension == '.html':
-                list_of_paths.append(path)
+        file_extension = splitext(path)[1]
+        if file_extension == '.html':
+            list_of_paths.append(path)
     return list_of_paths
+
 
 def load_file_and_build_structure(within_project, path_project):
     '''
@@ -36,16 +39,18 @@ def load_file_and_build_structure(within_project, path_project):
         root_directory_path = split(model_path_main)[0][:-8] + path_project
     elif within_project == 'A':
         root_directory_path = path_project
-    else:
+    elif within_project == 'D':
         model_path_main = abspath(__file__)
         root_directory_path = split(model_path_main)[0][:-8] + 'python-2.7.7-docs-html'
 
     parser = Parser()
+    trie = Trie()
     paths = []
 
     try:
         path_file = read_the_file_paths(root_directory_path, paths)
     except:
+        print('Something went wrong due to initialization')
         raise Exception
 
     for path in path_file:

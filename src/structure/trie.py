@@ -1,4 +1,4 @@
-class TrieNode():
+class TrieNode:
     def __init__(self, char, parent):
         self.char = char
         self.parent = parent
@@ -28,7 +28,7 @@ class Trie(object):
             char = new_word[char_index]
             char_exists = False
             node_child = None
-            for node_child in node.lista_dece:
+            for node_child in node.children:
                 if node_child.char == char:
                     char_exists = True
                     break
@@ -41,7 +41,7 @@ class Trie(object):
                 self.add_word(new_word, node_child, path, char_index + 1)
                 return None
         else:
-            if path not in node.path_number_of_repetitions:
+            if not path in node.path_number_of_repetitions:
                 node.path_number_of_repetitions[path] = 1
             else:
                 node.path_number_of_repetitions[path] = node.path_number_of_repetitions[path] + 1
