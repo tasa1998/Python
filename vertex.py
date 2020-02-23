@@ -7,15 +7,15 @@ class Vertex:
         self.reci=reci
         self.veze=set() #skup cvorova koji pokazuju na ovaj cvor
 
-    def element(self):
-        """Return element associated with this vertex."""
-        return self._element
+    """def element(self):
+        Return element associated with this vertex.
+        return self._element"""
 
     def parsiraj(self):
         parserr=Parser()
         return parserr.parse(self.ime)
 
-    def __hash__(self): # will allow vertex to be a map/set key
+    """def __hash__(self): # will allow vertex to be a map/set key
         return hash(id(self))
     def __str__(self):
-        return str(self._element)
+        return str(self._element)"""
