@@ -26,7 +26,7 @@ class Graph:
                     self.cvorovi[i] = cvor
                     self.cvorovi[i].veze.add(path)
 
-            novaGrana=Edge(path, i)
+            novaGrana = Edge(path, i)
             self.grane.append(novaGrana)
 
 
