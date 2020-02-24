@@ -18,4 +18,5 @@ def check_correct_operation():
 def input_path():
     return input("\n\nUneti putanju do foldera \n("
                  "Za folder u okviru projekta potrebno je uneti slovo P zatim ? i onda nazi foldera (P?python-2.7.7-docs-html)\n"
-                 "a za apsolutnu putanju slovo A zatim ? i onda apsolutnu putanju (A?C:\\Users\...): ")
+                 "a za apsolutnu putanju slovo A zatim ? i onda apsolutnu putanju (A?C:\\Users\...)\n"
+                 "ako zelite default-nu putanju unesite D zatim ? (D?):")

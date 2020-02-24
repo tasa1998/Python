@@ -34,14 +34,11 @@ def load_file_and_build_structure(within_project, path_project):
     :return:
     '''
     root_directory_path = ''
-    if within_project == 'P':
+    if within_project == 'P' or within_project == 'D':
         model_path_main = abspath(__file__)
         root_directory_path = split(model_path_main)[0][:-8] + path_project
     elif within_project == 'A':
         root_directory_path = path_project
-    elif within_project == 'D':
-        model_path_main = abspath(__file__)
-        root_directory_path = split(model_path_main)[0][:-8] + 'python-2.7.7-docs-html'
 
     parser = Parser()
     trie = Trie()

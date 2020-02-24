@@ -9,7 +9,10 @@ if __name__ == '__main__':
             path = input_path()
             if path.__contains__('P?') or path.__contains__('A?') or path.__contains__('D?'):
                 within_project = path.split('?')[0]
-                path_project = path.split('?')[1]
+                if len(path.split('?')[1] )>1:
+                    path_project = path.split('?')[1]
+                else:
+                    path_project = 'python-2.7.7-docs-html'
                 trie = load_file_and_build_structure(within_project, path_project)
                 break
             else:
