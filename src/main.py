@@ -7,7 +7,7 @@ if __name__ == '__main__':
     while True:
         try:
             path = input_path()
-            if path.__contains__('P?') or path.__contains__('A?'):
+            if path.__contains__('P?') or path.__contains__('A?') or path.__contains__('D?'):
                 within_project = path.split('?')[0]
                 path_project = path.split('?')[1]
                 trie = load_file_and_build_structure(within_project, path_project)

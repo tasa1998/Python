@@ -1,5 +1,8 @@
 import re
 
+from src.search.operand import use_operand
+
+
 def take_word(sentence):
     '''
     Funkcija nalazi rec koja u sebi sadrzi velika, mala slova i brojeva.
@@ -21,7 +24,7 @@ def print_out(dictionary):
 
 def do_search(trie):
     '''
-    Funkcija vrsi pretragu na osnovu unete reci ili vise reci koje su odvojene AND, OR ili NOT operandom.
+    Funkcija vrsi pretragu na osnovu unete reci ili vise reci koje su odvojene AND, OR ili NOT operatorom.
     :param trie:
     :return:
     '''
@@ -39,3 +42,12 @@ def do_search(trie):
             dictionary_first_word = trie.find_word(list_of_words[0].lower(), trie.root)
             dictionary_second_word = trie.find_word(list_of_words[2].lower(), trie.root)
             operand = list_of_words[1]
+        else:
+            dictionary_words = {}
+            for word in list_of_words:
+                if len(dictionary_words) > 0:
+                    temporary_dictionary = trie.find_word(word.lower(), trie.root)
+                    dictionary_words = use_operand(dictionary_words, temporary_dictionary, 'OR')
+                else:
+                    dictionary_words = trie.find_word(word.lower(), trie.root)
+            print_out(dictionary_words)

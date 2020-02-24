@@ -50,7 +50,7 @@ def load_file_and_build_structure(within_project, path_project):
     try:
         path_file = read_the_file_paths(root_directory_path, paths)
     except:
-        print('Something went wrong due to initialization')
+        print('Doslo je do greske prilikom inicijalizacije!')
         raise Exception
 
     for path in path_file:
