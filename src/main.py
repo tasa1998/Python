@@ -18,33 +18,18 @@ resenje = Set()
 resenje = brojevi.presek(brojevi1)
 resenje.ispisi()"""
 
-
-def napraviGraf(path):
-    graf=Graph()
-    parserr=Parser()
-    for koren,folderi,datoteke in os.walk(path):
-        for ime in datoteke:
-            if ime.endswith(".html"):
-                filepath = os.path.join(koren,ime)
-                linkovi, reci=parserr.parse(filepath)
-                graf.insert_vertex(linkovi, reci, filepath)
-    return graf
-
 if __name__ == '__main__':
     print("-------------PRETRAZIVANJE TEKSTA-------------")
     while True:
         try:
             path = input_path()
-            root = os.path.abspath(os.getcwd())
-            root = os.path.join(root, path)
             if path.__contains__('P?') or path.__contains__('A?') or path.__contains__('D?'):
                 within_project = path.split('?')[0]
                 if len(path.split('?')[1] )>1:
                     path_project = path.split('?')[1]
                 else:
                     path_project = 'python-2.7.7-docs-html'
-                trie = load_file_and_build_structure(within_project, path_project)
-                graf = napraviGraf(root)
+                trie, graf = load_file_and_build_structure(within_project, path_project)
                 break
             else:
                 raise Exception

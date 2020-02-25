@@ -32,19 +32,19 @@ def do_search(trie):
     list_of_words = take_word(wanted_words)
 
     if 'AND' in list_of_words or 'OR' in list_of_words or 'NOT' in list_of_words:
-        if len(list_of_words) < 3:
+        if len(list_of_words) < 3:      #ako se nalazi AND, OR ili NOT lista unetih reci mora sadrzati 3 reci
             raise Exception
-    if len(list_of_words) == 1 and list_of_words[0].isalnum():
+    if len(list_of_words) == 1 and list_of_words[0].isalnum():      #ako je unete 1 rec nadji je u recniku
         dictionary = trie.find_word(list_of_words[0].lower(), trie.root)
         print_out(dictionary)
-    elif len(list_of_words) > 1:
-        if 'AND' in list_of_words or 'OR' in list_of_words or 'NOT' in list_of_words:
-            dictionary_first_word = trie.find_word(list_of_words[0].lower(), trie.root)
-            dictionary_second_word = trie.find_word(list_of_words[2].lower(), trie.root)
-            operand = list_of_words[1]
+    elif len(list_of_words) > 1:        #ako je duzina lista unetih reci veca od 1
+        if 'AND' in list_of_words or 'OR' in list_of_words or 'NOT' in list_of_words:   #ako je uneto AND, OR ili NOT
+            dictionary_first_word = trie.find_word(list_of_words[0].lower(), trie.root) #recnik 1 reci
+            dictionary_second_word = trie.find_word(list_of_words[2].lower(), trie.root) #recnik 2 reci
+            operand = list_of_words[1]                                                  #koji operand je unesen (and, or ili not)
         else:
             dictionary_words = {}
-            for word in list_of_words:
+            for word in list_of_words:            #ako korisnik unese npr. python about posmatramo kao da je uneo python or about
                 if len(dictionary_words) > 0:
                     temporary_dictionary = trie.find_word(word.lower(), trie.root)
                     dictionary_words = use_operand(dictionary_words, temporary_dictionary, 'OR')
