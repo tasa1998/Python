@@ -43,11 +43,12 @@ def do_search(trie):
             dictionary_second_word = trie.find_word(list_of_words[2].lower(), trie.root) #recnik 2 reci
             operand = list_of_words[1]                                                  #koji operand je unesen (and, or ili not)
         else:
-            dictionary_words = {}
+            dictionary = {}
             for word in list_of_words:            #ako korisnik unese npr. python about posmatramo kao da je uneo python or about
-                if len(dictionary_words) > 0:
+                if len(dictionary) > 0:
                     temporary_dictionary = trie.find_word(word.lower(), trie.root)
-                    dictionary_words = use_operand(dictionary_words, temporary_dictionary, 'OR')
+                    dictionary = use_operand(dictionary, temporary_dictionary, 'OR')
                 else:
-                    dictionary_words = trie.find_word(word.lower(), trie.root)
-            print_out(dictionary_words)
+                    dictionary = trie.find_word(word.lower(), trie.root)
+            print_out(dictionary)
+    print("\n\nUkupan broj fajlova u kojima je pronadjena trazena reci/reci je: " + str(len(dictionary.keys())))
