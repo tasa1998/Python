@@ -56,11 +56,11 @@ def load_file_and_build_structure(within_project, path_project):
 
     for path in path_file:
         links, words = parser.parse(path)
-        graf.insert_vertex(links, words, path)
+        graf.insert_vertex(links, words, path)     #dodavanje cvorova u graf dok se parsira
         for word in words:
             trie.add_word(word.lower(), trie.root, path)
 
     time2 = time()
     print("Vreme ucitavanja podataka iz fajla i kreiranja strukture je: "+ str(time2-time1))
     print()
-    return trie,graf
+    return trie,graf                                
