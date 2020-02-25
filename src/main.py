@@ -1,12 +1,42 @@
 from src.util.file_util import load_file_and_build_structure
 from src.util.menu_messages import input_path, meni, check_correct_operation
 from src.search.search import do_search
+from src.structure.graph2 import Graph
+from src.text.parser import Parser
+import os
+from src.structure.set import Set
+
+"""brojevi = Set()
+brojevi.dodaj(1)
+brojevi.dodaj(2)
+brojevi1 = Set()
+brojevi1.dodaj(2)
+brojevi1.dodaj(4)
+
+brojevi.presek(brojevi1)
+resenje = Set()
+resenje = brojevi.presek(brojevi1)
+resenje.ispisi()"""
+
+
+def napraviGraf(path):
+    graf=Graph()
+    parserr=Parser()
+    for koren,folderi,datoteke in os.walk(path):
+        for ime in datoteke:
+            if ime.endswith(".html"):
+                filepath = os.path.join(koren,ime)
+                linkovi, reci=parserr.parse(filepath)
+                graf.insert_vertex(linkovi, reci, filepath)
+    return graf
 
 if __name__ == '__main__':
     print("-------------PRETRAZIVANJE TEKSTA-------------")
     while True:
         try:
             path = input_path()
+            root = os.path.abspath(os.getcwd())
+            root = os.path.join(root, path)
             if path.__contains__('P?') or path.__contains__('A?') or path.__contains__('D?'):
                 within_project = path.split('?')[0]
                 if len(path.split('?')[1] )>1:
@@ -14,6 +44,7 @@ if __name__ == '__main__':
                 else:
                     path_project = 'python-2.7.7-docs-html'
                 trie = load_file_and_build_structure(within_project, path_project)
+                graf = napraviGraf(root)
                 break
             else:
                 raise Exception
